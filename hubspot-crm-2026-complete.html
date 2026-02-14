@@ -1,0 +1,2903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#ff7a59">
+    <meta name="description" content="Complete beginner's guide to HubSpot CRM 2026 with Breeze AI, Smart CRM, 20+ Agents, Data Hub">
+    <title>HubSpot CRM 2026 Guide | Breeze AI</title>
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiSHViU3BvdCBDUk0gMjAyNiBHdWlkZSIsInNob3J0X25hbWUiOiJIUyBDUk0gMjAyNiIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZmZmZmZmIiwidGhlbWVfY29sb3IiOiIjZmY3YTU5In0=">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --hs-orange: #FF7A59;
+            --hs-dark: #33475B;
+            --hs-light: #F5F8FA;
+            --hs-blue: #00A4BD;
+            --hs-green: #00BDA5;
+            --hs-purple: #7C5CFF;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F5F8FA;
+            --text-primary: #33475B;
+            --text-secondary: #516F90;
+            --border-color: #E6EAEE;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacOSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            margin: 1%;
+            padding-bottom: 70px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            --bg-primary: #1A1A1A;
+            --bg-secondary: #2D2D2D;
+            --text-primary: #E6EAEE;
+            --text-secondary: #B0BEC5;
+            --border-color: #404040;
+            --hs-light: #2D2D2D;
+        }
+
+        /* Breeze AI Mode - Enhanced Glow */
+        body.breeze-mode .ai-card,
+        body.breeze-mode .agent-card,
+        body.breeze-mode .flip-card {
+            animation: breezeGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes breezeGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(124, 92, 255, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(124, 92, 255, 0.6); }
+        }
+
+        /* Offline Indicator */
+        .offline-indicator {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #FF5252;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 600;
+            z-index: 1001;
+            display: none;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .offline-indicator.show {
+            display: flex;
+        }
+
+        .online-indicator {
+            background: var(--hs-green);
+        }
+
+        /* Header with HubSpot styling */
+        header {
+            background: linear-gradient(135deg, var(--hs-orange) 0%, #ff5a3d 100%);
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(255, 122, 89, 0.3);
+            margin-bottom: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        h1 {
+            color: white;
+            font-size: 1.2em;
+            font-weight: 600;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .hs-logo {
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--hs-orange);
+            font-size: 0.9em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.75em;
+            margin-top: 4px;
+            font-weight: 400;
+        }
+
+        /* Utility Bar */
+        .utility-bar {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .utility-btn {
+            background: white;
+            color: var(--hs-orange);
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75em;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .utility-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Experience Mode Toggle */
+        .mode-toggle {
+            background: var(--bg-primary);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+
+        .mode-btn {
+            flex: 1;
+            padding: 8px;
+            border: 2px solid var(--border-color);
+            background: transparent;
+            border-radius: 6px;
+            font-size: 0.8em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-primary);
+        }
+
+        .mode-btn.active {
+            background: var(--hs-orange);
+            color: white;
+            border-color: var(--hs-orange);
+        }
+
+        /* Search Container */
+        .search-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.9em;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--hs-orange);
+            box-shadow: 0 0 0 3px rgba(255, 122, 89, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .search-results {
+            background: var(--bg-primary);
+            border-radius: 6px;
+            margin-top: 5px;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: absolute;
+            width: 100%;
+            z-index: 50;
+        }
+
+        .search-results.show {
+            display: block;
+        }
+
+        .search-result-item {
+            padding: 10px;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            font-size: 0.85em;
+        }
+
+        .search-result-item:hover {
+            background: var(--hs-light);
+        }
+
+        .highlight {
+            background: yellow;
+            color: black;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        /* Progress Tracker */
+        .progress-tracker {
+            background: var(--bg-primary);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 8px;
+            background: var(--hs-light);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--hs-orange) 0%, var(--hs-green) 100%);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        /* Navigation Tabs */
+        nav {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 15px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        nav::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        nav::-webkit-scrollbar-thumb {
+            background: var(--hs-orange);
+            border-radius: 3px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            min-width: 80px;
+            padding: 8px 10px;
+            border: none;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .nav-btn.active {
+            background: var(--hs-orange);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(255, 122, 89, 0.3);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.12);
+        }
+
+        .bookmark-icon {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            color: #FFD700;
+            font-size: 0.9em;
+        }
+
+        /* Content Sections */
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-primary);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--hs-orange);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateX(3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .card.ai-card {
+            border-left-color: var(--hs-purple);
+        }
+
+        .advanced-tip {
+            display: none;
+            background: linear-gradient(135deg, #fff7f5 0%, #ffffff 100%);
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border-left: 3px solid var(--hs-purple);
+            font-size: 0.85em;
+        }
+
+        body.dark-mode .advanced-tip {
+            background: linear-gradient(135deg, #2D2D2D 0%, #1A1A1A 100%);
+        }
+
+        body.intermediate-mode .advanced-tip {
+            display: block;
+        }
+
+        .card-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1em;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .icon-btn:hover {
+            color: var(--hs-orange);
+            transform: scale(1.2);
+        }
+
+        .icon-btn.active {
+            color: #FFD700;
+        }
+
+        /* Flip Cards */
+        .flip-card {
+            perspective: 1000px;
+            height: 250px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .flip-card-front {
+            background: linear-gradient(135deg, var(--hs-purple) 0%, #6b4aff 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .flip-card-back {
+            background: var(--bg-primary);
+            transform: rotateY(180deg);
+            overflow-y: auto;
+        }
+
+        .agent-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .agent-name {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .agent-tagline {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+
+        .flip-btn {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.75em;
+            font-weight: 600;
+        }
+
+        /* Wizard */
+        .wizard {
+            background: var(--bg-primary);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .wizard-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .wizard-progress::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--border-color);
+            z-index: 0;
+        }
+
+        .wizard-step {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            color: var(--text-secondary);
+        }
+
+        .wizard-step.active {
+            background: var(--hs-orange);
+            border-color: var(--hs-orange);
+            color: white;
+        }
+
+        .wizard-step.completed {
+            background: var(--hs-green);
+            border-color: var(--hs-green);
+            color: white;
+        }
+
+        .wizard-content {
+            min-height: 150px;
+            margin-bottom: 20px;
+        }
+
+        .wizard-page {
+            display: none;
+        }
+
+        .wizard-page.active {
+            display: block;
+        }
+
+        .wizard-controls {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .wizard-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .wizard-btn.primary {
+            background: var(--hs-orange);
+            color: white;
+        }
+
+        .wizard-btn.secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        /* Quiz System */
+        .quiz-container {
+            background: var(--bg-primary);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border: 2px solid var(--hs-purple);
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .quiz-score {
+            background: var(--hs-purple);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 700;
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+
+        .quiz-question h4 {
+            font-size: 0.95em;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .quiz-option {
+            padding: 12px;
+            margin: 8px 0;
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.85em;
+            border: 2px solid transparent;
+        }
+
+        .quiz-option:hover {
+            background: var(--hs-light);
+            transform: translateX(5px);
+        }
+
+        .quiz-option.selected {
+            background: var(--hs-blue);
+            color: white;
+            border-color: var(--hs-blue);
+        }
+
+        .quiz-option.correct {
+            background: var(--hs-green);
+            color: white;
+            border-color: var(--hs-green);
+        }
+
+        .quiz-option.incorrect {
+            background: #FF5252;
+            color: white;
+            border-color: #FF5252;
+        }
+
+        .quiz-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .quiz-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .quiz-btn.submit {
+            background: var(--hs-purple);
+            color: white;
+        }
+
+        .quiz-btn.retry {
+            background: var(--hs-orange);
+            color: white;
+        }
+
+        .quiz-result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            display: none;
+        }
+
+        .quiz-result.show {
+            display: block;
+        }
+
+        .quiz-result.pass {
+            background: #E8F5E9;
+            color: #2E7D32;
+            border: 2px solid var(--hs-green);
+        }
+
+        .quiz-result.fail {
+            background: #FFEBEE;
+            color: #C62828;
+            border: 2px solid #FF5252;
+        }
+
+        body.dark-mode .quiz-result.pass {
+            background: rgba(0, 189, 165, 0.2);
+        }
+
+        body.dark-mode .quiz-result.fail {
+            background: rgba(255, 82, 82, 0.2);
+        }
+
+        .share-score {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: white;
+            border: 2px solid var(--hs-orange);
+            color: var(--hs-orange);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85em;
+        }
+
+        /* Notes Section */
+        .notes-section {
+            background: var(--bg-primary);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .note-item {
+            background: #FFF9C4;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border-left: 3px solid #FBC02D;
+            font-size: 0.85em;
+            position: relative;
+            padding-right: 35px;
+        }
+
+        body.dark-mode .note-item {
+            background: rgba(251, 192, 45, 0.2);
+        }
+
+        .delete-note {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background: none;
+            border: none;
+            color: #D32F2F;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        /* AI Simulator */
+        .ai-simulator {
+            background: linear-gradient(135deg, var(--hs-purple) 0%, #6b4aff 100%);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            color: white;
+        }
+
+        .chat-window {
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            min-height: 150px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .chat-message {
+            margin-bottom: 12px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chat-message.user {
+            background: rgba(255,255,255,0.2);
+            text-align: right;
+        }
+
+        .chat-message.agent {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .chat-input-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 6px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 0.9em;
+        }
+
+        .chat-input::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .chat-send {
+            padding: 10px 20px;
+            background: white;
+            color: var(--hs-purple);
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* Favorites Categories */
+        .favorite-categories {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            overflow-x: auto;
+        }
+
+        .category-tag {
+            padding: 6px 12px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .category-tag.active {
+            background: var(--hs-orange);
+            color: white;
+            border-color: var(--hs-orange);
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            z-index: 1000;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 8px;
+            transition: all 0.2s;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .nav-item:active {
+            transform: scale(0.95);
+        }
+
+        .nav-item.active {
+            color: var(--hs-orange);
+            background: rgba(255, 122, 89, 0.1);
+        }
+
+        .nav-item i {
+            font-size: 1.3em;
+        }
+
+        .nav-item span {
+            font-size: 0.7em;
+            font-weight: 600;
+        }
+
+        .nav-badge {
+            position: absolute;
+            top: 4px;
+            right: 25%;
+            background: #FF5252;
+            color: white;
+            border-radius: 10px;
+            padding: 2px 6px;
+            font-size: 0.65em;
+            font-weight: 700;
+        }
+
+        /* Details/Summary */
+        details {
+            background: var(--bg-primary);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+
+        summary {
+            background: linear-gradient(135deg, var(--hs-orange) 0%, #ff6b47 100%);
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: '▼';
+            font-size: 0.8em;
+            transition: transform 0.3s;
+        }
+
+        details[open] summary {
+            border-radius: 8px 8px 0 0;
+        }
+
+        details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        details .content {
+            padding: 15px;
+        }
+
+        /* Other styles */
+        h2 {
+            font-size: 1em;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 0.9em;
+            color: var(--hs-orange);
+            margin: 12px 0 8px 0;
+            font-weight: 600;
+        }
+
+        p, li {
+            font-size: 0.85em;
+            line-height: 1.6;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            font-weight: 600;
+            margin-left: 6px;
+        }
+
+        .badge-ai {
+            background: var(--hs-purple);
+            color: white;
+        }
+
+        .badge-new {
+            background: var(--hs-green);
+            color: white;
+        }
+
+        .badge-pro {
+            background: var(--hs-blue);
+            color: white;
+        }
+
+        .step-box {
+            background: var(--bg-secondary);
+            padding: 12px;
+            margin: 10px 0;
+            border-left: 3px solid var(--hs-orange);
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .info-box {
+            background: #E3F2FD;
+            border-left: 3px solid var(--hs-blue);
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        body.dark-mode .info-box {
+            background: rgba(0, 164, 189, 0.1);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #fff8f0 100%);
+            border-left: 3px solid #ff9800;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-size: 0.8em;
+        }
+
+        body.dark-mode .warning-box {
+            background: rgba(255, 152, 0, 0.1);
+        }
+
+        .checklist-item {
+            padding: 6px 0;
+            font-size: 0.8em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--hs-orange);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .feature-card {
+            background: var(--bg-primary);
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            border-top: 3px solid var(--hs-orange);
+            transition: transform 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 1.8em;
+            margin-bottom: 6px;
+        }
+
+        .feature-title {
+            font-size: 0.8em;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .dashboard-preview {
+            background: linear-gradient(135deg, var(--hs-dark) 0%, #3d4f63 100%);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .dashboard-item {
+            background: rgba(255,255,255,0.95);
+            padding: 8px;
+            margin: 6px 0;
+            border-radius: 4px;
+            font-size: 0.75em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        body.dark-mode .dashboard-item {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .metric {
+            font-weight: 700;
+            color: var(--hs-orange);
+            font-size: 1.1em;
+        }
+
+        .copy-btn {
+            background: var(--hs-blue);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75em;
+            margin: 5px 5px 5px 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #008599;
+            transform: scale(1.05);
+        }
+
+        .copy-btn.copied {
+            background: var(--hs-green);
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            z-index: 9999;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 3px solid rgba(255, 122, 89, 0.2);
+            border-top: 3px solid var(--hs-orange);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            h1 { font-size: 1.1em; }
+            .nav-btn { min-width: 70px; font-size: 0.7em; }
+            .nav-item span { font-size: 0.65em; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.7em;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Offline Indicator -->
+    <div class="offline-indicator" id="offlineIndicator">
+        <i class="fas fa-wifi"></i>
+        <span id="statusText">Offline - Guide Available</span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <h1>
+            <span class="hs-logo">H</span>
+            HubSpot CRM 2026 Guide
+        </h1>
+        <div class="subtitle">🚀 Breeze AI | 20+ Agents | Data Hub | Smart CRM</div>
+        <div class="utility-bar">
+            <button class="utility-btn" onclick="toggleTheme('dark')">
+                <i class="fas fa-moon" id="darkIcon"></i>
+                <span id="darkText">Dark</span>
+            </button>
+            <button class="utility-btn" onclick="toggleTheme('breeze')">
+                <i class="fas fa-sparkles"></i>
+                Breeze
+            </button>
+            <button class="utility-btn" onclick="resetAll()">
+                <i class="fas fa-redo"></i>
+                Reset
+            </button>
+            <button class="utility-btn" onclick="exportProgress()">
+                <i class="fas fa-download"></i>
+                Export
+            </button>
+        </div>
+    </header>
+
+    <!-- Experience Mode Toggle -->
+    <div class="mode-toggle">
+        <button class="mode-btn active" onclick="setMode('beginner')">
+            <i class="fas fa-user"></i> Beginner
+        </button>
+        <button class="mode-btn" onclick="setMode('intermediate')">
+            <i class="fas fa-user-graduate"></i> Intermediate
+        </button>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search anything (fuzzy search)...">
+        <i class="fas fa-search search-icon"></i>
+        <div class="search-results" id="searchResults"></div>
+    </div>
+
+    <!-- Progress Tracker -->
+    <div class="progress-tracker">
+        <div class="progress-header">
+            <span style="font-size: 0.9em; font-weight: 600;">
+                <i class="fas fa-chart-line"></i> Your Progress
+            </span>
+            <span id="progressPercent" style="font-size: 0.85em; font-weight: 700; color: var(--hs-orange);">0%</span>
+        </div>
+        <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+        <p style="font-size: 0.75em; margin-top: 5px; color: var(--text-secondary);">
+            <span id="completedCount">0</span> of <span id="totalCount">0</span> items completed
+        </p>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav id="navTabs">
+        <button class="nav-btn active" onclick="showSection('intro')" data-section="intro">
+            🏠 Intro
+        </button>
+        <button class="nav-btn" onclick="showSection('setup')" data-section="setup">
+            ⚙️ Setup
+        </button>
+        <button class="nav-btn" onclick="showSection('contacts')" data-section="contacts">
+            👥 Contacts
+        </button>
+        <button class="nav-btn" onclick="showSection('deals')" data-section="deals">
+            💼 Deals
+        </button>
+        <button class="nav-btn" onclick="showSection('automation')" data-section="automation">
+            🤖 AI & Auto
+        </button>
+        <button class="nav-btn" onclick="showSection('reports')" data-section="reports">
+            📊 Reports
+        </button>
+        <button class="nav-btn" onclick="showSection('tips')" data-section="tips">
+            💡 Tips
+        </button>
+    </nav>
+
+    <!-- INTRO SECTION -->
+    <div id="intro" class="section active">
+        <div class="card">
+            <div class="card-actions">
+                <button class="icon-btn" onclick="toggleFavorite('intro-welcome', this, 'Must-read')">
+                    <i class="far fa-heart"></i>
+                </button>
+                <button class="icon-btn" onclick="addToNotes('Welcome to HubSpot CRM 2026 - AI-first platform')">
+                    <i class="fas fa-bookmark"></i>
+                </button>
+            </div>
+            <h2><i class="fas fa-rocket"></i> Welcome to HubSpot CRM 2026</h2>
+            <p>Your complete beginner's guide to mastering the next generation of customer relationship management. HubSpot CRM 2026 integrates Breeze AI, 20+ intelligent agents, Data Hub, and predictive analytics to revolutionize customer relationships.</p>
+            
+            <div class="advanced-tip">
+                💡 <strong>Intermediate Tip:</strong> Start with Breeze Copilot to understand AI capabilities before deploying specialized agents. Most teams see ROI within 30 days by focusing on Prospecting + Customer Agents first.
+            </div>
+        </div>
+
+        <div class="card ai-card">
+            <div class="card-actions">
+                <button class="icon-btn" onclick="toggleFavorite('2026-features', this, 'Must-read')">
+                    <i class="far fa-heart"></i>
+                </button>
+            </div>
+            <h2><i class="fas fa-sparkles"></i> What's Revolutionary in 2026?</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <div class="feature-title">Breeze AI Platform</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <div class="feature-title">20+ AI Agents</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-title">Data Hub</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔮</div>
+                    <div class="feature-title">Predictive Insights</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-title">Smart Workflows</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-title">Zero-Trust Security</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-star"></i> 2026 Key Features</h2>
+            <ul>
+                <li><strong>Breeze AI Platform</strong> <span class="badge badge-ai">AI</span> - Core intelligence layer across all HubSpot</li>
+                <li><strong>Prospecting Agent</strong> <span class="badge badge-ai">AI</span> - Auto finds 200+ qualified leads monthly</li>
+                <li><strong>Customer Agent</strong> <span class="badge badge-ai">AI</span> - 24/7 support, resolves 50-70% of tickets</li>
+                <li><strong>Data Hub</strong> <span class="badge badge-pro">PRO</span> - Unified data warehouse, 500+ integrations</li>
+                <li><strong>Breeze Studio</strong> <span class="badge badge-new">NEW</span> - Build custom agents, no code</li>
+                <li><strong>Agent Marketplace</strong> <span class="badge badge-new">NEW</span> - 1,000+ community agents</li>
+                <li><strong>Smart CRM</strong> - AI enriches contacts with 100+ data points automatically</li>
+                <li><strong>Journey Automation</strong> - Visual customer journey mapping</li>
+            </ul>
+            
+            <div class="advanced-tip">
+                💡 <strong>Advanced:</strong> Breeze Intelligence (part of Data Hub) provides intent signals showing when prospects are actively researching solutions. This powers predictive lead scoring with 94% accuracy.
+            </div>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-tasks"></i> Getting Started Checklist</h2>
+            <div class="checklist-item">
+                <input type="checkbox" id="check1" onchange="updateProgress()">
+                <label for="check1">Complete initial account setup and Breeze AI calibration</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check2" onchange="updateProgress()">
+                <label for="check2">Import and enrich existing contacts with Smart CRM</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check3" onchange="updateProgress()">
+                <label for="check3">Configure privacy controls and consent management</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check4" onchange="updateProgress()">
+                <label for="check4">Deploy Prospecting Agent for lead generation</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check5" onchange="updateProgress()">
+                <label for="check5">Launch Customer Agent on website</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check6" onchange="updateProgress()">
+                <label for="check6">Connect Data Hub to your data sources</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check7" onchange="updateProgress()">
+                <label for="check7">Complete all section quizzes (80%+ score)</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- SETUP SECTION -->
+    <div id="setup" class="section">
+        <div class="card">
+            <div class="card-actions">
+                <button class="icon-btn" onclick="toggleFavorite('setup-guide', this, 'Setup')">
+                    <i class="far fa-heart"></i>
+                </button>
+            </div>
+            <h2><i class="fas fa-cog"></i> Initial Setup & Configuration</h2>
+            <p>Setting up HubSpot CRM 2026 takes approximately 15-20 minutes with Breeze AI guiding you through each step.</p>
+        </div>
+
+        <!-- Multi-Step Wizard -->
+        <div class="wizard">
+            <div class="wizard-progress">
+                <div class="wizard-step active" id="step-1">1</div>
+                <div class="wizard-step" id="step-2">2</div>
+                <div class="wizard-step" id="step-3">3</div>
+                <div class="wizard-step" id="step-4">4</div>
+            </div>
+
+            <div class="wizard-content">
+                <div class="wizard-page active" id="page-1">
+                    <h3>Step 1: Create Your Account</h3>
+                    <p>Visit <strong>app.hubspot.com/signup</strong> and create your free account.</p>
+                    <div class="step-box">
+                        ✓ Enter business email and company details<br>
+                        ✓ Verify your email address<br>
+                        ✓ Choose your plan (Free, Starter, Professional, Enterprise)
+                    </div>
+                    <div class="info-box">
+                        💡 The Free plan includes Breeze Copilot and limited agent usage. Professional tier unlocks all 20+ agents.
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('app.hubspot.com/signup', this)">
+                        <i class="fas fa-copy"></i> Copy URL
+                    </button>
+                </div>
+
+                <div class="wizard-page" id="page-2">
+                    <h3>Step 2: Calibrate Breeze AI</h3>
+                    <p>Breeze AI learns about your business to provide better recommendations.</p>
+                    <div class="step-box">
+                        ✓ Describe your products/services<br>
+                        ✓ Define your target customer (ICP)<br>
+                        ✓ Upload sample content for voice analysis<br>
+                        ✓ Set your sales process stages
+                    </div>
+                    <div class="info-box">
+                        🧠 This calibration takes 5-10 minutes and improves AI accuracy by 40%.
+                    </div>
+                </div>
+
+                <div class="wizard-page" id="page-3">
+                    <h3>Step 3: Import Your Data</h3>
+                    <p>Bring in existing contacts, companies, and deals from other tools.</p>
+                    <div class="step-box">
+                        ✓ Upload CSV files or connect via API<br>
+                        ✓ Map fields to HubSpot properties<br>
+                        ✓ Enable auto-enrichment with Data Agent<br>
+                        ✓ Review and confirm import
+                    </div>
+                    <div class="info-box">
+                        📊 Data Agent will automatically enrich imported contacts with 100+ data points within 24 hours.
+                    </div>
+                </div>
+
+                <div class="wizard-page" id="page-4">
+                    <h3>Step 4: Deploy Your First Agent</h3>
+                    <p>We recommend starting with Prospecting Agent or Customer Agent.</p>
+                    <div class="step-box">
+                        ✓ Choose agent type from marketplace<br>
+                        ✓ Configure agent settings and rules<br>
+                        ✓ Set goals and KPIs to track<br>
+                        ✓ Launch agent and monitor performance
+                    </div>
+                    <div class="info-box">
+                        🚀 Most agents start delivering value within 24-48 hours. You'll see leads or tickets being handled automatically.
+                    </div>
+                </div>
+            </div>
+
+            <div class="wizard-controls">
+                <button class="wizard-btn secondary" onclick="prevWizardStep()" id="prevBtn" disabled>
+                    ← Previous
+                </button>
+                <button class="wizard-btn primary" onclick="nextWizardStep()" id="nextBtn">
+                    Next →
+                </button>
+            </div>
+        </div>
+
+        <details>
+            <summary>Breeze AI Agents Overview</summary>
+            <div class="content">
+                <p><strong>HubSpot 2026 includes 20+ specialized AI agents:</strong></p>
+                
+                <!-- Prospecting Agent Flip Card -->
+                <div class="flip-card" id="prospecting-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="agent-icon">🎯</div>
+                            <div class="agent-name">Prospecting Agent</div>
+                            <div class="agent-tagline">Finds 200+ qualified leads monthly</div>
+                            <button class="flip-btn" onclick="flipCard('prospecting-card')">Learn More →</button>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>How It Works</h3>
+                            <p>Prospecting Agent automatically identifies ideal prospects matching your ICP, enriches their data from 200M+ company profiles, and adds them to your CRM ready for outreach.</p>
+                            
+                            <h3>Setup Steps</h3>
+                            <ol style="font-size: 0.85em;">
+                                <li>Define your Ideal Customer Profile (industry, size, role)</li>
+                                <li>Set search frequency (daily/weekly/continuous)</li>
+                                <li>Configure auto-enrichment and scoring</li>
+                                <li>Launch agent and review prospects</li>
+                            </ol>
+                            
+                            <h3>2026 Benefits</h3>
+                            <p>✅ 200+ qualified leads/month<br>✅ Saves 20+ hours of manual research<br>✅ 95% data accuracy<br>✅ Auto-updates when prospects change jobs</p>
+                            
+                            <button class="flip-btn" onclick="flipCard('prospecting-card')">← Back</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Agent Flip Card -->
+                <div class="flip-card" id="customer-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="agent-icon">💬</div>
+                            <div class="agent-name">Customer Agent</div>
+                            <div class="agent-tagline">24/7 AI support - 50-70% ticket resolution</div>
+                            <button class="flip-btn" onclick="flipCard('customer-card')">Learn More →</button>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>How It Works</h3>
+                            <p>Customer Agent handles support inquiries across chat, email, and social. It learns from your knowledge base, past tickets, and human agent interactions to provide accurate, helpful responses.</p>
+                            
+                            <h3>Setup Steps</h3>
+                            <ol style="font-size: 0.85em;">
+                                <li>Upload knowledge base and FAQs</li>
+                                <li>Import historical support tickets for training</li>
+                                <li>Customize agent personality and tone</li>
+                                <li>Set escalation rules to human agents</li>
+                                <li>Deploy on website, app, email, social</li>
+                            </ol>
+                            
+                            <h3>2026 Benefits</h3>
+                            <p>✅ Resolves 50-70% of routine inquiries<br>✅ Available 24/7/365<br>✅ Supports 120+ languages<br>✅ Learns and improves continuously<br>✅ Seamless handoff to humans</p>
+                            
+                            <button class="flip-btn" onclick="flipCard('customer-card')">← Back</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Agent Flip Card -->
+                <div class="flip-card" id="content-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="agent-icon">✍️</div>
+                            <div class="agent-name">Content Agent</div>
+                            <div class="agent-tagline">Creates blogs, emails, social posts instantly</div>
+                            <button class="flip-btn" onclick="flipCard('content-card')">Learn More →</button>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>How It Works</h3>
+                            <p>Content Agent generates marketing content in your brand voice. It analyzes your existing content, learns your style, and creates new blogs, emails, social media posts, and landing page copy.</p>
+                            
+                            <h3>Setup Steps</h3>
+                            <ol style="font-size: 0.85em;">
+                                <li>Provide brand guidelines and voice samples</li>
+                                <li>Connect existing content for learning</li>
+                                <li>Set content approval workflows</li>
+                                <li>Define topics and keywords to target</li>
+                            </ol>
+                            
+                            <h3>2026 Benefits</h3>
+                            <p>✅ 10x faster content creation<br>✅ Consistent brand voice<br>✅ SEO-optimized automatically<br>✅ Generates content in 40+ languages</p>
+                            
+                            <button class="flip-btn" onclick="flipCard('content-card')">← Back</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Agent Flip Card -->
+                <div class="flip-card" id="data-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="agent-icon">📊</div>
+                            <div class="agent-name">Data Agent</div>
+                            <div class="agent-tagline">Auto-enriches and cleans CRM data</div>
+                            <button class="flip-btn" onclick="flipCard('data-card')">Learn More →</button>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>How It Works</h3>
+                            <p>Data Agent continuously enriches contact and company records with verified data from 200M+ profiles. It also detects and merges duplicates, standardizes fields, and flags data quality issues.</p>
+                            
+                            <h3>Setup Steps</h3>
+                            <ol style="font-size: 0.85em;">
+                                <li>Enable Data Hub integration</li>
+                                <li>Choose enrichment level (basic/advanced)</li>
+                                <li>Set auto-enrichment triggers</li>
+                                <li>Configure data quality rules</li>
+                            </ol>
+                            
+                            <h3>2026 Benefits</h3>
+                            <p>✅ 100+ data points per contact<br>✅ 98% data accuracy<br>✅ Auto-deduplication<br>✅ Real-time updates (job changes, funding)</p>
+                            
+                            <button class="flip-btn" onclick="flipCard('data-card')">← Back</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box" style="margin-top: 15px;">
+                    <strong>More Agents Available:</strong> Social Media, Email, Call, Video, Translation, Analytics, SEO, Revenue, and 10+ more specialized agents in the Agent Marketplace.
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>AI Simulator - Try Customer Agent</summary>
+            <div class="content">
+                <div class="ai-simulator">
+                    <h3 style="color: white; margin-bottom: 10px;">
+                        <i class="fas fa-comments"></i> Customer Agent Demo
+                    </h3>
+                    <p style="font-size: 0.85em; opacity: 0.9; margin-bottom: 15px;">
+                        Simulate a conversation with Customer Agent. Type a question about HubSpot CRM!
+                    </p>
+                    
+                    <div class="chat-window" id="chatWindow">
+                        <div class="chat-message agent">
+                            <strong>Customer Agent:</strong> Hi! I'm here to help with HubSpot CRM questions. Try asking about: pricing, agents, Breeze AI, Data Hub, or setup!
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input-group">
+                        <input type="text" class="chat-input" id="chatInput" placeholder="Ask me anything about HubSpot CRM...">
+                        <button class="chat-send" onclick="sendChatMessage()">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>Privacy & Compliance Setup</summary>
+            <div class="content">
+                <h3>Configure Privacy Settings</h3>
+                <div class="step-box">
+                    1. Navigate to Settings → Privacy Center → Compliance Framework<br>
+                    2. Select applicable regulations: GDPR 2.0 (EU), CCPA-Enhanced (California), PIPEDA (Canada)<br>
+                    3. Enable Consent Management AI - automatically tracks and honors customer preferences<br>
+                    4. Configure Data Residency - choose where customer data is stored (17 global data centers)<br>
+                    5. Activate Blockchain Audit Trail for immutable compliance records
+                </div>
+                
+                <div class="warning-box">
+                    ⚠️ <strong>Important:</strong> Privacy settings cannot be downgraded once enabled. All Breeze AI agents respect consent preferences automatically.
+                </div>
+            </div>
+        </details>
+
+        <!-- Setup Quiz -->
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <h3 style="margin: 0;"><i class="fas fa-question-circle"></i> Quiz: Setup Knowledge</h3>
+                <div class="quiz-score" id="score-setup">Score: 0/3</div>
+            </div>
+
+            <div class="quiz-question">
+                <h4>1. What is Smart CRM's main function?</h4>
+                <div class="quiz-option" data-quiz="setup" data-question="0" data-correct="true" onclick="selectOption(this)">
+                    A) Automatically enriches contact data from verified sources
+                </div>
+                <div class="quiz-option" data-quiz="setup" data-question="0" onclick="selectOption(this)">
+                    B) Only stores basic contact information
+                </div>
+                <div class="quiz-option" data-quiz="setup" data-question="0" onclick="selectOption(this)">
+                    C) Replaces manual data entry completely
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h4>2. Which agent helps find new prospects automatically?</h4>
+                <div class="quiz-option" data-quiz="setup" data-question="1" onclick="selectOption(this)">
+                    A) Customer Agent
+                </div>
+                <div class="quiz-option" data-quiz="setup" data-question="1" data-correct="true" onclick="selectOption(this)">
+                    B) Prospecting Agent
+                </div>
+                <div class="quiz-option" data-quiz="setup" data-question="1" onclick="selectOption(this)">
+                    C) Content Agent
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h4>3. How many AI agents does HubSpot 2026 offer?</h4>
+                <div class="quiz-option" data-quiz="setup" data-question="2" onclick="selectOption(this)">
+                    A) 5 agents
+                </div>
+                <div class="quiz-option" data-quiz="setup" data-question="2" data-correct="true" onclick="selectOption(this)">
+                    B) 20+ specialized agents
+                </div>
+                <div class="quiz-option" data-quiz="setup" data-question="2" onclick="selectOption(this)">
+                    C) Only 1 general agent
+                </div>
+            </div>
+
+            <div class="quiz-controls">
+                <button class="quiz-btn submit" onclick="submitQuiz('setup', 3)">Submit Quiz</button>
+                <button class="quiz-btn retry" onclick="retryQuiz('setup', 3)" style="display: none;">Retry Quiz</button>
+            </div>
+
+            <div class="quiz-result" id="result-setup">
+                <h4 id="result-title-setup"></h4>
+                <p id="result-message-setup"></p>
+                <button class="share-score" onclick="shareScore('setup')">
+                    <i class="fas fa-share-alt"></i> Share Score
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACTS SECTION -->
+    <div id="contacts" class="section">
+        <div class="card">
+            <div class="card-actions">
+                <button class="icon-btn" onclick="toggleFavorite('contacts-guide', this, 'Agents')">
+                    <i class="far fa-heart"></i>
+                </button>
+            </div>
+            <h2><i class="fas fa-users"></i> Managing Contacts in 2026</h2>
+            <p>HubSpot's AI-enhanced contact management uses neural networks to automatically enrich, score, and organize your entire database.</p>
+        </div>
+
+        <details>
+            <summary>Creating AI-Enhanced Contacts</summary>
+            <div class="content">
+                <div class="step-box">
+                    <strong>Step 1:</strong> Navigate to Contacts → Create Contact or use voice: "Hey HubSpot, create new contact"
+                </div>
+                <div class="step-box">
+                    <strong>Step 2:</strong> Enter basic info: Name, Email, Company
+                </div>
+                <div class="step-box">
+                    <strong>Step 3:</strong> Smart CRM AI instantly suggests:
+                    <ul style="margin-top: 8px;">
+                        <li>Job title and LinkedIn profile</li>
+                        <li>Company revenue and employee count</li>
+                        <li>Technology stack they use</li>
+                        <li>Recent company news and funding</li>
+                        <li>Predicted buyer persona</li>
+                    </ul>
+                </div>
+                <div class="step-box">
+                    <strong>Step 4:</strong> Review AI suggestions and click "Accept All" or customize
+                </div>
+                <div class="info-box">
+                    🤖 <strong>AI Magic:</strong> The Neural Contact Engine enriches contacts with 100+ data points from verified sources in under 2 seconds.
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>AI Contact Scoring & Segmentation</summary>
+            <div class="content">
+                <p><strong>HubSpot 2026 automatically scores contacts using:</strong></p>
+                <ul>
+                    <li><strong>Engagement Score</strong> - Email opens, clicks, website visits, content downloads</li>
+                    <li><strong>Fit Score</strong> - How well they match your ideal customer profile</li>
+                    <li><strong>Intent Score</strong> <span class="badge badge-ai">AI</span> - Predicted purchase readiness (0-100)</li>
+                    <li><strong>Churn Risk</strong> <span class="badge badge-ai">AI</span> - Likelihood of disengagement</li>
+                    <li><strong>Lifetime Value Prediction</strong> <span class="badge badge-ai">AI</span> - Expected revenue over 3 years</li>
+                </ul>
+                
+                <h3>Enable Predictive Scoring:</h3>
+                <div class="step-box">
+                    1. Go to Settings → Properties → Predictive Scoring<br>
+                    2. Choose model: Lead-to-Customer or Lead-to-MQL<br>
+                    3. Breeze trains on your historical data (needs 500+ contacts)<br>
+                    4. Scores update automatically every 24 hours
+                </div>
+                
+                <div class="advanced-tip">
+                    💡 <strong>Advanced:</strong> Combine predictive scoring with workflow automation to auto-assign high-value leads to senior reps within minutes of engagement.
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>Smart Lists & Segmentation</summary>
+            <div class="content">
+                <h3>Create AI-Powered Smart Lists:</h3>
+                <div class="step-box">
+                    1. Navigate to Contacts → Lists → Create Smart List<br>
+                    2. Use AI-suggested criteria: "High Intent Score (>75)" or "Engaged in last 7 days"<br>
+                    3. Combine multiple filters using AND/OR logic<br>
+                    4. Enable Predictive Updates - list membership updates as scores change<br>
+                    5. Connect lists to workflows for automated nurturing
+                </div>
+                
+                <button class="copy-btn" onclick="copyToClipboard('Contacts → Lists → Create Smart List', this)">
+                    <i class="fas fa-copy"></i> Copy Path
+                </button>
+            </div>
+        </details>
+    </div>
+
+    <!-- DEALS SECTION -->
+    <div id="deals" class="section">
+        <div class="card">
+            <h2><i class="fas fa-handshake"></i> AI-Powered Deal Management</h2>
+            <p>HubSpot's AI Revenue Assistant predicts deal outcomes with 94% accuracy and recommends next-best actions to close faster.</p>
+        </div>
+
+        <details>
+            <summary>Creating Your First Deal</summary>
+            <div class="content">
+                <div class="step-box">
+                    1. Navigate to Sales → Deals → Create Deal
+                </div>
+                <div class="step-box">
+                    2. Fill in basic information: Deal name, Amount, Close date, Pipeline, Deal stage
+                </div>
+                <div class="step-box">
+                    3. Associate with contacts and company - AI suggests primary decision-makers
+                </div>
+                <div class="step-box">
+                    4. AI Auto-Fill <span class="badge badge-ai">AI</span> populates:
+                    <ul style="margin-top: 8px;">
+                        <li>Win probability based on similar deals</li>
+                        <li>Recommended discount range</li>
+                        <li>Predicted close date (if left blank)</li>
+                        <li>Competitive threats detected</li>
+                    </ul>
+                </div>
+                <div class="info-box">
+                    🎯 <strong>AI Insight:</strong> Deals created with complete contact associations close 37% faster according to HubSpot's 2026 benchmark data.
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>AI Revenue Forecasting</summary>
+            <div class="content">
+                <h3>Access Neural Forecasting:</h3>
+                <div class="step-box">
+                    1. Open Sales → Forecasting dashboard<br>
+                    2. View three AI-generated scenarios:
+                    <ul style="margin-top: 8px;">
+                        <li><strong>Conservative</strong> - 90% confidence level</li>
+                        <li><strong>Most Likely</strong> - Based on current trends</li>
+                        <li><strong>Optimistic</strong> - If all high-probability deals close</li>
+                    </ul>
+                </div>
+                <div class="step-box">
+                    3. Drill down by: Rep, Team, Product Line, Region, or Custom Segment
+                </div>
+                <div class="step-box">
+                    4. AI highlights:
+                    <ul style="margin-top: 8px;">
+                        <li>Deals at risk of slipping</li>
+                        <li>Opportunities to accelerate</li>
+                        <li>Pipeline gaps to fill</li>
+                    </ul>
+                </div>
+                <div class="info-box">
+                    📊 <strong>Accuracy Boost:</strong> Neural forecasting is 3.2x more accurate than manual forecasting.
+                </div>
+            </div>
+        </details>
+
+        <div class="card">
+            <h2><i class="fas fa-chart-line"></i> Sample Deal Board</h2>
+            <div class="dashboard-preview">
+                <div class="dashboard-item">
+                    <span>📋 Qualified (12 deals)</span>
+                    <span class="metric">$450K</span>
+                </div>
+                <div class="dashboard-item">
+                    <span>📊 Presentation (8 deals)</span>
+                    <span class="metric">$320K</span>
+                </div>
+                <div class="dashboard-item">
+                    <span>📝 Contract Sent (5 deals)</span>
+                    <span class="metric">$180K</span>
+                </div>
+                <div class="dashboard-item">
+                    <span>🤖 AI Win Rate</span>
+                    <span class="metric">68% ⬆️</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AUTOMATION SECTION -->
+    <div id="automation" class="section">
+        <div class="card ai-card">
+            <h2><i class="fas fa-robot"></i> AI & Automation in 2026</h2>
+            <p>HubSpot's autonomous workflows learn from your actions and self-optimize to improve conversions by up to 340%.</p>
+        </div>
+
+        <details>
+            <summary>Building Your First AI Workflow</summary>
+            <div class="content">
+                <div class="step-box">
+                    1. Navigate to Automation → Workflows → Create Workflow
+                </div>
+                <div class="step-box">
+                    2. Choose workflow type: Contact-based, Deal-based, Company-based, or Custom
+                </div>
+                <div class="step-box">
+                    3. Set enrollment triggers - AI suggests based on your goal
+                </div>
+                <div class="step-box">
+                    4. Build workflow with actions: Send email, Create task, Update property, etc.
+                </div>
+                <div class="step-box">
+                    5. Enable Autonomous Learning <span class="badge badge-ai">AI</span>:
+                    <ul style="margin-top: 8px;">
+                        <li>AI A/B tests every action automatically</li>
+                        <li>Optimizes timing, content, and paths</li>
+                        <li>Removes underperforming steps</li>
+                        <li>Suggests new actions based on patterns</li>
+                    </ul>
+                </div>
+                <div class="info-box">
+                    ⚡ <strong>Power Move:</strong> Start with HubSpot's pre-built AI workflow templates for lead nurturing, onboarding, or re-engagement.
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>Breeze AI Email Sequences</summary>
+            <div class="content">
+                <p><strong>Neural Email Engine writes personalized emails at scale:</strong></p>
+                <div class="step-box">
+                    1. Go to Automation → Sequences → Create Sequence<br>
+                    2. Name your sequence and set goals (book meeting, get reply, drive click)<br>
+                    3. Add email steps - AI offers templates based on industry and persona<br>
+                    4. Use AI personalization tokens like {{ai.pain_point}} and {{ai.value_prop}}<br>
+                    5. Set timing delays (AI suggests optimal intervals)<br>
+                    6. Enable Quantum Send-Time Optimization
+                </div>
+                
+                <div class="advanced-tip">
+                    💡 <strong>Advanced:</strong> Breeze analyzes recipient timezone, historical engagement patterns, and industry benchmarks to send each email at the optimal moment.
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>Chatbots & Conversational AI</summary>
+            <div class="content">
+                <h3>Deploy AI-Powered Chatbots:</h3>
+                <div class="step-box">
+                    1. Navigate to Automation → Chatflows → Create Chatbot<br>
+                    2. Choose bot type: Conversational AI, Qualification Bot, Meeting Scheduler, or Support Bot<br>
+                    3. Train your AI bot by uploading knowledge base articles<br>
+                    4. Customize appearance: colors, avatar, position<br>
+                    5. Set availability rules and handoff triggers<br>
+                    6. Publish to website
+                </div>
+                
+                <div class="info-box">
+                    🤖 <strong>2026 Breakthrough:</strong> Conversational AI bots understand 127 languages with emotional intelligence. They detect frustration and escalate proactively.
+                </div>
+            </div>
+        </details>
+    </div>
+
+    <!-- REPORTS SECTION -->
+    <div id="reports" class="section">
+        <div class="card">
+            <h2><i class="fas fa-chart-bar"></i> Reports & Analytics 2026</h2>
+            <p>HubSpot's Neural Analytics Platform provides real-time insights with predictive overlays and natural language querying.</p>
+        </div>
+
+        <details>
+            <summary>Data Hub: Unified Data Warehouse</summary>
+            <div class="content">
+                <h3>What is Data Hub?</h3>
+                <p>A centralized repository that unifies all your customer data from CRM, website, apps, and third-party tools with 500+ integrations.</p>
+                
+                <div class="step-box">
+                    1. Access at Reports → Data Hub<br>
+                    2. Connect data sources: Shopify, Stripe, Google Analytics, SQL databases<br>
+                    3. Data syncs in real-time across all sources<br>
+                    4. Query with natural language: "Show revenue by customer segment"
+                </div>
+                
+                <div class="advanced-tip">
+                    💡 <strong>Advanced:</strong> Data Hub uses a unified customer identity graph to match the same customer across multiple platforms, giving you a true 360° view.
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>AI Report Builder</summary>
+            <div class="content">
+                <h3>Create Reports with Natural Language:</h3>
+                <div class="step-box">
+                    1. Go to Reports → Create Report<br>
+                    2. Type your question: "Show me closed deals by rep this quarter"<br>
+                    3. Breeze generates chart automatically<br>
+                    4. Add to dashboard or schedule email delivery
+                </div>
+                
+                <div class="info-box">
+                    🎙️ <strong>Voice Reporting:</strong> Ask "Hey Breeze, show me conversion rates by traffic source this month" for instant voice-generated reports.
+                </div>
+            </div>
+        </details>
+
+        <div class="card">
+            <h2><i class="fas fa-chart-line"></i> Sample Analytics Dashboard</h2>
+            <div class="dashboard-preview">
+                <div class="dashboard-item">
+                    <span>💰 Monthly Revenue</span>
+                    <span class="metric">$847K ⬆️ 23%</span>
+                </div>
+                <div class="dashboard-item">
+                    <span>🎯 Win Rate</span>
+                    <span class="metric">42% ⬆️ 5%</span>
+                </div>
+                <div class="dashboard-item">
+                    <span>⏱️ Avg. Sales Cycle</span>
+                    <span class="metric">18 days ⬇️ 12%</span>
+                </div>
+                <div class="dashboard-item">
+                    <span>🤖 AI Forecast (Next Q)</span>
+                    <span class="metric">$2.4M (87% conf.)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TIPS SECTION -->
+    <div id="tips" class="section">
+        <div class="card">
+            <h2><i class="fas fa-lightbulb"></i> Pro Tips & Best Practices</h2>
+            <p>Expert strategies to maximize HubSpot CRM 2026 with Breeze AI from the world's top users.</p>
+        </div>
+
+        <details>
+            <summary>Maximize Breeze AI Performance</summary>
+            <div class="content">
+                <ul>
+                    <li>✅ Provide feedback on AI suggestions to improve accuracy</li>
+                    <li>✅ Keep data clean - AI works 40% better with quality data</li>
+                    <li>✅ Train agents on your specific content and processes</li>
+                    <li>✅ Review AI-generated content before sending externally</li>
+                    <li>✅ Use voice commands for 3x faster data entry</li>
+                    <li>✅ Start with 2-3 core agents before expanding to full suite</li>
+                </ul>
+                
+                <div class="advanced-tip">
+                    💡 <strong>Advanced:</strong> Set up agent performance dashboards to track ROI. Top-performing teams review agent analytics weekly and adjust settings monthly.
+                </div>
+            </div>
+        </details>
+
+        <details>
+            <summary>Security & Compliance in 2026</summary>
+            <div class="content">
+                <h3>Essential Security Settings:</h3>
+                <div class="step-box">
+                    1. Enable Multi-Factor Authentication (MFA) for all users<br>
+                    2. Configure IP allowlisting to restrict access<br>
+                    3. Set up zero-trust access controls with AI monitoring<br>
+                    4. Enable automatic data retention and deletion policies<br>
+                    5. Activate end-to-end encryption for sensitive fields
+                </div>
+                
+                <div class="warning-box">
+                    🔒 <strong>Critical:</strong> 2026 regulations require breach notification within 6 hours. All Breeze AI agents respect consent preferences automatically.
+                </div>
+                
+                <button class="copy-btn" onclick="copyToClipboard('Settings → Security → MFA', this)">
+                    <i class="fas fa-copy"></i> Copy Security Path
+                </button>
+            </div>
+        </details>
+
+        <details>
+            <summary>Quick Wins for Day 1</summary>
+            <div class="content">
+                <div class="checklist-item">
+                    <input type="checkbox" id="quick1" onchange="updateProgress()">
+                    <label for="quick1">Enable Smart CRM enrichment on all contacts</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="quick2" onchange="updateProgress()">
+                    <label for="quick2">Set up Prospecting Agent with your ICP</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="quick3" onchange="updateProgress()">
+                    <label for="quick3">Create first automated workflow with Breeze</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="quick4" onchange="updateProgress()">
+                    <label for="quick4">Deploy Customer Agent on your website</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="quick5" onchange="updateProgress()">
+                    <label for="quick5">Enable predictive lead scoring</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="quick6" onchange="updateProgress()">
+                    <label for="quick6">Connect Data Hub to key data sources</label>
+                </div>
+            </div>
+        </details>
+
+        <!-- Tips Quiz -->
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <h3 style="margin: 0;"><i class="fas fa-trophy"></i> Final Knowledge Check</h3>
+                <div class="quiz-score" id="score-final">Score: 0/3</div>
+            </div>
+
+            <div class="quiz-question">
+                <h4>1. What makes HubSpot CRM 2026 revolutionary?</h4>
+                <div class="quiz-option" data-quiz="final" data-question="0" data-correct="true" onclick="selectOption(this)">
+                    A) Breeze AI platform with 20+ agents, Data Hub, and autonomous workflows
+                </div>
+                <div class="quiz-option" data-quiz="final" data-question="0" onclick="selectOption(this)">
+                    B) Only has better email templates
+                </div>
+                <div class="quiz-option" data-quiz="final" data-question="0" onclick="selectOption(this)">
+                    C) Same features but different UI
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h4>2. What percentage of tickets can Customer Agent resolve?</h4>
+                <div class="quiz-option" data-quiz="final" data-question="1" onclick="selectOption(this)">
+                    A) 10-20%
+                </div>
+                <div class="quiz-option" data-quiz="final" data-question="1" data-correct="true" onclick="selectOption(this)">
+                    B) 50-70% of routine inquiries
+                </div>
+                <div class="quiz-option" data-quiz="final" data-question="1" onclick="selectOption(this)">
+                    C) Customer Agent doesn't handle tickets
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <h4>3. What is Data Hub's main benefit?</h4>
+                <div class="quiz-option" data-quiz="final" data-question="2" onclick="selectOption(this)">
+                    A) Only stores contact names
+                </div>
+                <div class="quiz-option" data-quiz="final" data-question="2" data-correct="true" onclick="selectOption(this)">
+                    B) Unified data warehouse with 500+ integrations and real-time sync
+                </div>
+                <div class="quiz-option" data-quiz="final" data-question="2" onclick="selectOption(this)">
+                    C) Backup storage for files
+                </div>
+            </div>
+
+            <div class="quiz-controls">
+                <button class="quiz-btn submit" onclick="submitQuiz('final', 3)">Submit Final Quiz</button>
+                <button class="quiz-btn retry" onclick="retryQuiz('final', 3)" style="display: none;">Retry Quiz</button>
+            </div>
+
+            <div class="quiz-result" id="result-final">
+                <h4 id="result-title-final"></h4>
+                <p id="result-message-final"></p>
+                <button class="share-score" onclick="shareScore('final')">
+                    <i class="fas fa-share-alt"></i> Share Score
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item active" onclick="navigateBottom('intro')">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </div>
+        <div class="nav-item" onclick="navigateBottom('setup')">
+            <i class="fas fa-cog"></i>
+            <span>Setup</span>
+        </div>
+        <div class="nav-item" onclick="navigateBottom('contacts')">
+            <i class="fas fa-users"></i>
+            <span>Contacts</span>
+        </div>
+        <div class="nav-item" onclick="navigateBottom('automation')">
+            <i class="fas fa-robot"></i>
+            <span>AI Agents</span>
+        </div>
+        <div class="nav-item" onclick="showFavorites()">
+            <i class="fas fa-star"></i>
+            <span>Favorites</span>
+            <div class="nav-badge" id="favBadge" style="display: none;">0</div>
+        </div>
+    </div>
+
+    <!-- Favorites Modal (shown when clicking Favorites tab) -->
+    <div id="favoritesModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 2000; padding: 20px; overflow-y: auto;" onclick="if(event.target === this) hideFavorites()">
+        <div style="background: var(--bg-primary); border-radius: 12px; padding: 20px; max-width: 600px; margin: 20px auto; position: relative;">
+            <button onclick="hideFavorites()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 1.5em; cursor: pointer; color: var(--text-secondary);">×</button>
+            
+            <h2 style="margin-bottom: 20px;"><i class="fas fa-star"></i> Your Favorites</h2>
+            
+            <div class="favorite-categories">
+                <div class="category-tag active" onclick="filterFavorites('all')">
+                    <i class="fas fa-th"></i> All
+                </div>
+                <div class="category-tag" onclick="filterFavorites('Must-read')">
+                    <i class="fas fa-exclamation-circle"></i> Must-read
+                </div>
+                <div class="category-tag" onclick="filterFavorites('Agents')">
+                    <i class="fas fa-robot"></i> Agents
+                </div>
+                <div class="category-tag" onclick="filterFavorites('Setup')">
+                    <i class="fas fa-cog"></i> Setup
+                </div>
+            </div>
+            
+            <div id="favoritesList">
+                <p style="text-align: center; color: var(--text-secondary); padding: 20px;">
+                    No favorites yet. Tap the ❤️ icon on any card to save it here.
+                </p>
+            </div>
+
+            <div class="notes-section" style="margin-top: 20px;">
+                <h3><i class="fas fa-sticky-note"></i> Your Notes</h3>
+                <p style="font-size: 0.85em; margin-bottom: 12px;">Tap the bookmark icon on cards to save snippets here.</p>
+                <div id="notesList"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>HubSpot CRM 2026 Complete Guide</strong></p>
+        <p>Powered by Breeze AI | 20+ Agents | Data Hub | Smart CRM</p>
+        <p style="margin-top: 8px; font-size: 0.9em;">
+            🌐 <a href="https://hubspot.com" style="color: var(--hs-orange); text-decoration: none;">HubSpot.com</a> | 
+            📚 <a href="https://academy.hubspot.com" style="color: var(--hs-orange); text-decoration: none;">Academy</a> | 
+            💬 <a href="https://community.hubspot.com" style="color: var(--hs-orange); text-decoration: none;">Community</a>
+        </p>
+        <p style="margin-top: 10px; font-size: 0.85em; color: var(--text-secondary);">
+            Educational guide for HubSpot CRM 2026. For official docs, visit docs.hubspot.com
+        </p>
+    </footer>
+
+    <script>
+        // Service Worker for Offline Support
+        if ('serviceWorker' in navigator) {
+            const sw = `
+                const CACHE = 'hubspot-crm-v2';
+                self.addEventListener('install', e => {
+                    e.waitUntil(caches.open(CACHE).then(cache => cache.addAll(['/'])));
+                });
+                self.addEventListener('fetch', e => {
+                    e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
+                });
+            `;
+            const blob = new Blob([sw], {type: 'application/javascript'});
+            const url = URL.createObjectURL(blob);
+            navigator.serviceWorker.register(url).catch(() => {});
+        }
+
+        // Online/Offline Detection
+        function updateOnlineStatus() {
+            const indicator = document.getElementById('offlineIndicator');
+            const statusText = document.getElementById('statusText');
+            
+            if (navigator.onLine) {
+                indicator.classList.remove('show');
+            } else {
+                indicator.classList.add('show');
+                statusText.textContent = 'Offline - Guide Available';
+            }
+        }
+
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+        updateOnlineStatus();
+
+        // Theme Management
+        let currentTheme = localStorage.getItem('theme') || 'light';
+        let breezeMode = localStorage.getItem('breezeMode') === 'true';
+        
+        function toggleTheme(theme) {
+            if (theme === 'dark') {
+                document.body.classList.toggle('dark-mode');
+                const isDark = document.body.classList.contains('dark-mode');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                
+                const icon = document.getElementById('darkIcon');
+                const text = document.getElementById('darkText');
+                if (isDark) {
+                    icon.className = 'fas fa-sun';
+                    text.textContent = 'Light';
+                } else {
+                    icon.className = 'fas fa-moon';
+                    text.textContent = 'Dark';
+                }
+            } else if (theme === 'breeze') {
+                document.body.classList.toggle('breeze-mode');
+                breezeMode = document.body.classList.contains('breeze-mode');
+                localStorage.setItem('breezeMode', breezeMode);
+            }
+        }
+
+        if (currentTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('darkIcon').className = 'fas fa-sun';
+            document.getElementById('darkText').textContent = 'Light';
+        }
+        
+        if (breezeMode) {
+            document.body.classList.add('breeze-mode');
+        }
+
+        // Experience Mode
+        function setMode(mode) {
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (mode === 'intermediate') {
+                document.body.classList.add('intermediate-mode');
+            } else {
+                document.body.classList.remove('intermediate-mode');
+            }
+            
+            localStorage.setItem('experienceMode', mode);
+        }
+
+        const savedMode = localStorage.getItem('experienceMode');
+        if (savedMode === 'intermediate') {
+            document.body.classList.add('intermediate-mode');
+            document.querySelectorAll('.mode-btn')[1].classList.add('active');
+            document.querySelectorAll('.mode-btn')[0].classList.remove('active');
+        }
+
+        // Section Navigation
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function navigateBottom(sectionId) {
+            showSection(sectionId);
+            
+            document.querySelectorAll('.bottom-nav .nav-item').forEach(item => item.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+
+        // Search Functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            const results = document.getElementById('searchResults');
+            
+            if (query.length < 2) {
+                results.classList.remove('show');
+                return;
+            }
+            
+            const searchableContent = [];
+            document.querySelectorAll('.card, details, .flip-card').forEach(el => {
+                const text = el.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    const snippet = el.textContent.substring(0, 100);
+                    searchableContent.push({
+                        text: snippet,
+                        element: el
+                    });
+                }
+            });
+            
+            if (searchableContent.length > 0) {
+                results.innerHTML = searchableContent.slice(0, 5).map((item, idx) => `
+                    <div class="search-result-item" onclick="scrollToSearchResult(${idx})">
+                        ${item.text.substring(0, 80)}...
+                    </div>
+                `).join('');
+                results.classList.add('show');
+                
+                window.searchResults = searchableContent;
+            } else {
+                results.innerHTML = '<div class="search-result-item">No results found</div>';
+                results.classList.add('show');
+            }
+        });
+
+        function scrollToSearchResult(idx) {
+            if (window.searchResults && window.searchResults[idx]) {
+                window.searchResults[idx].element.scrollIntoView({behavior: 'smooth', block: 'center'});
+                document.getElementById('searchResults').classList.remove('show');
+            }
+        }
+
+        // Click outside search to close
+        document.addEventListener('click', function(e) {
+            const searchContainer = document.querySelector('.search-container');
+            if (!searchContainer.contains(e.target)) {
+                document.getElementById('searchResults').classList.remove('show');
+            }
+        });
+
+        // Flip Cards
+        function flipCard(cardId) {
+            document.getElementById(cardId).classList.toggle('flipped');
+        }
+
+        // Wizard Navigation
+        let currentStep = 1;
+        
+        function nextWizardStep() {
+            if (currentStep < 4) {
+                document.getElementById(`step-${currentStep}`).classList.remove('active');
+                document.getElementById(`step-${currentStep}`).classList.add('completed');
+                document.getElementById(`page-${currentStep}`).classList.remove('active');
+                
+                currentStep++;
+                
+                document.getElementById(`step-${currentStep}`).classList.add('active');
+                document.getElementById(`page-${currentStep}`).classList.add('active');
+                
+                document.getElementById('prevBtn').disabled = false;
+                
+                if (currentStep === 4) {
+                    document.getElementById('nextBtn').textContent = 'Complete ✓';
+                }
+            } else {
+                alert('🎉 Setup wizard completed! You\'re ready to use HubSpot CRM 2026.');
+                confetti();
+                
+                // Reset wizard
+                currentStep = 1;
+                document.querySelectorAll('.wizard-step').forEach((step, idx) => {
+                    step.classList.remove('active', 'completed');
+                    if (idx === 0) step.classList.add('active');
+                });
+                document.querySelectorAll('.wizard-page').forEach((page, idx) => {
+                    page.classList.remove('active');
+                    if (idx === 0) page.classList.add('active');
+                });
+                document.getElementById('prevBtn').disabled = true;
+                document.getElementById('nextBtn').textContent = 'Next →';
+            }
+        }
+        
+        function prevWizardStep() {
+            if (currentStep > 1) {
+                document.getElementById(`step-${currentStep}`).classList.remove('active');
+                document.getElementById(`page-${currentStep}`).classList.remove('active');
+                
+                currentStep--;
+                
+                document.getElementById(`step-${currentStep}`).classList.remove('completed');
+                document.getElementById(`step-${currentStep}`).classList.add('active');
+                document.getElementById(`page-${currentStep}`).classList.add('active');
+                
+                document.getElementById('nextBtn').textContent = 'Next →';
+                
+                if (currentStep === 1) {
+                    document.getElementById('prevBtn').disabled = true;
+                }
+            }
+        }
+
+        // Quiz System
+        const quizData = {};
+        
+        function selectOption(el) {
+            const quiz = el.dataset.quiz;
+            const question = el.dataset.question;
+            
+            document.querySelectorAll(`[data-quiz="${quiz}"][data-question="${question}"]`).forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            el.classList.add('selected');
+            
+            if (!quizData[quiz]) quizData[quiz] = {};
+            quizData[quiz][question] = el;
+        }
+        
+        function submitQuiz(quizName, totalQuestions) {
+            const answers = quizData[quizName] || {};
+            let correct = 0;
+            
+            for (let i = 0; i < totalQuestions; i++) {
+                const selected = answers[i];
+                if (selected) {
+                    if (selected.dataset.correct === 'true') {
+                        selected.classList.add('correct');
+                        correct++;
+                    } else {
+                        selected.classList.add('incorrect');
+                    }
+                }
+            }
+            
+            const percentage = Math.round((correct / totalQuestions) * 100);
+            const passed = percentage >= 70;
+            
+            const resultDiv = document.getElementById(`result-${quizName}`);
+            const titleDiv = document.getElementById(`result-title-${quizName}`);
+            const messageDiv = document.getElementById(`result-message-${quizName}`);
+            const scoreDiv = document.getElementById(`score-${quizName}`);
+            
+            scoreDiv.textContent = `Score: ${correct}/${totalQuestions}`;
+            
+            resultDiv.className = 'quiz-result show ' + (passed ? 'pass' : 'fail');
+            titleDiv.textContent = passed ? '🎉 Excellent Work!' : '📚 Keep Learning';
+            messageDiv.textContent = `You scored ${correct}/${totalQuestions} (${percentage}%). ${passed ? 'You\'ve mastered this section!' : 'Review the material and try again.'}`;
+            
+            document.querySelector(`[onclick="submitQuiz('${quizName}', ${totalQuestions})"]`).style.display = 'none';
+            document.querySelector(`[onclick="retryQuiz('${quizName}', ${totalQuestions})"]`).style.display = 'block';
+            
+            const scores = JSON.parse(localStorage.getItem('quizScores') || '{}');
+            scores[quizName] = {correct, total: totalQuestions, percentage};
+            localStorage.setItem('quizScores', JSON.stringify(scores));
+            
+            if (passed) {
+                confetti();
+            }
+        }
+        
+        function retryQuiz(quizName, totalQuestions) {
+            document.querySelectorAll(`[data-quiz="${quizName}"]`).forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            quizData[quizName] = {};
+            
+            document.getElementById(`result-${quizName}`).classList.remove('show');
+            
+            document.querySelector(`[onclick="submitQuiz('${quizName}', ${totalQuestions})"]`).style.display = 'block';
+            document.querySelector(`[onclick="retryQuiz('${quizName}', ${totalQuestions})"]`).style.display = 'none';
+            
+            document.getElementById(`score-${quizName}`).textContent = `Score: 0/${totalQuestions}`;
+        }
+        
+        function shareScore(quizName) {
+            const scores = JSON.parse(localStorage.getItem('quizScores') || '{}');
+            const score = scores[quizName];
+            
+            if (score) {
+                const text = `I scored ${score.percentage}% on the HubSpot CRM 2026 ${quizName} quiz! 🎉`;
+                
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'HubSpot CRM Quiz Score',
+                        text: text
+                    });
+                } else {
+                    navigator.clipboard.writeText(text);
+                    alert('Score copied to clipboard!');
+                }
+            }
+        }
+
+        // Favorites System
+        let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+        
+        function toggleFavorite(id, button, category = 'Must-read') {
+            const icon = button.querySelector('i');
+            const existing = favorites.find(f => f.id === id);
+            
+            if (existing) {
+                favorites = favorites.filter(f => f.id !== id);
+                icon.className = 'far fa-heart';
+                button.classList.remove('active');
+            } else {
+                const text = button.closest('.card').querySelector('h2').textContent.trim();
+                favorites.push({
+                    id: id,
+                    category: category,
+                    text: text,
+                    timestamp: Date.now()
+                });
+                icon.className = 'fas fa-heart';
+                button.classList.add('active');
+            }
+            
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            updateFavoritesList();
+            updateFavBadge();
+        }
+        
+        function updateFavoritesList() {
+            const list = document.getElementById('favoritesList');
+            
+            if (favorites.length === 0) {
+                list.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 20px;">No favorites yet. Tap the ❤️ icon on any card to save it here.</p>';
+                return;
+            }
+            
+            list.innerHTML = favorites.map(fav => `
+                <div class="card" style="margin-bottom: 10px;">
+                    <span class="badge" style="background: var(--hs-orange); color: white; float: right;">${fav.category}</span>
+                    <h3 style="margin-bottom: 5px;">${fav.text}</h3>
+                    <p style="font-size: 0.75em; color: var(--text-secondary);">
+                        Saved ${new Date(fav.timestamp).toLocaleDateString()}
+                    </p>
+                </div>
+            `).join('');
+        }
+        
+        function filterFavorites(category) {
+            document.querySelectorAll('.category-tag').forEach(tag => tag.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const list = document.getElementById('favoritesList');
+            const filtered = category === 'all' ? favorites : favorites.filter(f => f.category === category);
+            
+            if (filtered.length === 0) {
+                list.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 20px;">No favorites in this category.</p>';
+                return;
+            }
+            
+            list.innerHTML = filtered.map(fav => `
+                <div class="card" style="margin-bottom: 10px;">
+                    <span class="badge" style="background: var(--hs-orange); color: white; float: right;">${fav.category}</span>
+                    <h3 style="margin-bottom: 5px;">${fav.text}</h3>
+                    <p style="font-size: 0.75em; color: var(--text-secondary);">
+                        Saved ${new Date(fav.timestamp).toLocaleDateString()}
+                    </p>
+                </div>
+            `).join('');
+        }
+        
+        function updateFavBadge() {
+            const badge = document.getElementById('favBadge');
+            if (favorites.length > 0) {
+                badge.textContent = favorites.length;
+                badge.style.display = 'flex';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+
+        function showFavorites() {
+            document.getElementById('favoritesModal').style.display = 'block';
+            updateFavoritesList();
+            updateNotesList();
+            
+            document.querySelectorAll('.bottom-nav .nav-item').forEach(item => item.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+
+        function hideFavorites() {
+            document.getElementById('favoritesModal').style.display = 'none';
+        }
+
+        // Notes System
+        let notes = JSON.parse(localStorage.getItem('notes') || '[]');
+        
+        function addToNotes(text) {
+            notes.push({
+                text: text,
+                timestamp: Date.now()
+            });
+            localStorage.setItem('notes', JSON.stringify(notes));
+            updateNotesList();
+            
+            // Show brief notification
+            const btn = event.target.closest('.icon-btn');
+            const originalColor = btn.style.color;
+            btn.style.color = 'var(--hs-green)';
+            setTimeout(() => {
+                btn.style.color = originalColor;
+            }, 1000);
+        }
+        
+        function deleteNote(index) {
+            notes.splice(index, 1);
+            localStorage.setItem('notes', JSON.stringify(notes));
+            updateNotesList();
+        }
+        
+        function updateNotesList() {
+            const list = document.getElementById('notesList');
+            
+            if (notes.length === 0) {
+                list.innerHTML = '<p style="font-size: 0.85em; color: var(--text-secondary);">No notes yet.</p>';
+                return;
+            }
+            
+            list.innerHTML = notes.map((note, index) => `
+                <div class="note-item">
+                    ${note.text}
+                    <button class="delete-note" onclick="deleteNote(${index})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // AI Chat Simulator
+        const chatResponses = {
+            'price': 'HubSpot CRM 2026 offers Free (basic), Starter ($15/user/mo), Professional ($90/user/mo with all 20+ agents), and Enterprise ($150/user/mo).',
+            'agent': 'HubSpot includes 20+ AI agents: Prospecting, Customer, Content, Data, Social, Email, Call, Video, Translation, Analytics, SEO, Revenue, and more!',
+            'breeze': 'Breeze AI is the core intelligence platform powering all of HubSpot, including Breeze Copilot, specialized agents, and Breeze Studio for custom agents.',
+            'data hub': 'Data Hub is a unified data warehouse with 500+ integrations that syncs all customer data in real-time across CRM, website, e-commerce, and support.',
+            'setup': 'Setup takes ~30 min: 1) Create account 2) Calibrate Breeze AI 3) Import data 4) Deploy first agent. Check the Setup wizard!',
+            'prospecting': 'Prospecting Agent automatically finds 200+ qualified leads monthly by searching for companies matching your ICP and enriching their data.',
+            'customer': 'Customer Agent handles 50-70% of support tickets automatically across chat, email, and social in 120+ languages, 24/7.',
+            'help': 'I can answer questions about pricing, agents, Breeze AI, Data Hub, setup, and more. Try asking about specific features!'
+        };
+        
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            const chatWindow = document.getElementById('chatWindow');
+            
+            chatWindow.innerHTML += `
+                <div class="chat-message user">
+                    <strong>You:</strong> ${message}
+                </div>
+            `;
+            
+            input.value = '';
+            
+            let response = 'I\'m a demo agent. Try asking about: pricing, agents, Breeze AI, Data Hub, or setup!';
+            
+            for (const [key, value] of Object.entries(chatResponses)) {
+                if (message.toLowerCase().includes(key)) {
+                    response = value;
+                    break;
+                }
+            }
+            
+            setTimeout(() => {
+                chatWindow.innerHTML += `
+                    <div class="chat-message agent">
+                        <strong>Customer Agent:</strong> ${response}
+                    </div>
+                `;
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }, 800);
+        }
+        
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendChatMessage();
+            }
+        });
+
+        // Copy to Clipboard
+        function copyToClipboard(text, button) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // Progress Tracking
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const total = checkboxes.length;
+            const percentage = total > 0 ? Math.round((checked / total) * 100) : 0;
+            
+            document.getElementById('progressBar').style.width = percentage + '%';
+            document.getElementById('progressPercent').textContent = percentage + '%';
+            document.getElementById('completedCount').textContent = checked;
+            document.getElementById('totalCount').textContent = total;
+            
+            const progress = {};
+            checkboxes.forEach((cb, idx) => {
+                progress[`check-${idx}`] = cb.checked;
+            });
+            localStorage.setItem('progress', JSON.stringify(progress));
+        }
+
+        function loadProgress() {
+            const progress = JSON.parse(localStorage.getItem('progress') || '{}');
+            document.querySelectorAll('input[type="checkbox"]').forEach((cb, idx) => {
+                if (progress[`check-${idx}`]) {
+                    cb.checked = true;
+                }
+            });
+            updateProgress();
+        }
+
+        // Export Progress
+        function exportProgress() {
+            const data = {
+                progress: localStorage.getItem('progress'),
+                favorites: localStorage.getItem('favorites'),
+                notes: localStorage.getItem('notes'),
+                quizScores: localStorage.getItem('quizScores'),
+                theme: localStorage.getItem('theme'),
+                breezeMode: localStorage.getItem('breezeMode'),
+                experienceMode: localStorage.getItem('experienceMode'),
+                exportDate: new Date().toISOString()
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'hubspot-crm-progress.json';
+            a.click();
+        }
+
+        // Reset All
+        function resetAll() {
+            if (confirm('Reset ALL progress, favorites, notes, and settings?')) {
+                localStorage.clear();
+                location.reload();
+            }
+        }
+
+        // Confetti Effect
+        function confetti() {
+            const colors = ['#FF7A59', '#00A4BD', '#00BDA5', '#7C5CFF', '#FFD700'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                confetti.style.position = 'fixed';
+                confetti.style.animation = `confetti-fall ${Math.random() * 2 + 2}s linear`;
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 4000);
+            }
+        }
+
+        // Confetti animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes confetti-fall {
+                to {
+                    transform: translateY(100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize on Load
+        window.addEventListener('load', () => {
+            loadProgress();
+            updateFavoritesList();
+            updateNotesList();
+            updateFavBadge();
+            
+            // Restore favorite icons
+            favorites.forEach(fav => {
+                const buttons = document.querySelectorAll(`[onclick*="'${fav.id}'"]`);
+                buttons.forEach(btn => {
+                    const icon = btn.querySelector('i');
+                    if (icon) {
+                        icon.className = 'fas fa-heart';
+                        btn.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Keyboard Shortcuts
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey)) {
+                if (e.key >= '1' && e.key <= '7') {
+                    e.preventDefault();
+                    const sections = ['intro', 'setup', 'contacts', 'deals', 'automation', 'reports', 'tips'];
+                    const index = parseInt(e.key) - 1;
+                    if (sections[index]) {
+                        showSection(sections[index]);
+                    }
+                } else if (e.key === 'd') {
+                    e.preventDefault();
+                    toggleTheme('dark');
+                } else if (e.key === 'k') {
+                    e.preventDefault();
+                    document.getElementById('searchInput').focus();
+                }
+            }
+        });
+
+        console.log('🚀 HubSpot CRM 2026 Complete Guide Loaded!');
+        console.log('✨ All features active: Dark mode, Breeze mode, Flip cards, Wizard, Quizzes, AI simulator, Search, Progress, Favorites, Notes');
+        console.log('⌨️  Shortcuts: Ctrl+1-7 (sections), Ctrl+D (dark), Ctrl+K (search)');
+    </script>
+</body>
+</html>
